@@ -1,0 +1,15 @@
+name: staschuk-test
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  docker:
+    runs-on: [ubuntu-18.04]
+    steps:
+      - uses: actions/checkout@v1
+      - name: examine git log and fail
+        run: |
+          git log -n100 --graph --oneline --decorate
+          false
